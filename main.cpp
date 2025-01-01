@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 void clear_record();
 void exit_game();
@@ -79,30 +80,52 @@ void exit_game()
 
 void play_game()
 {
-    std::cout << "What are you using? (R, P, or S)" << std::endl;
+    std::cout << "What are you using (R, P, or S)? ";
 
-
-    char option;
+    char playerOption;
     bool validOption = false;
 
     while (!validOption)
     {
-        std::cin >> option;
+        std::cin >> playerOption;
 
-        switch (option)
+        switch (playerOption)
         {
             case 'R':
             case 'P':
             case 'S':
                 validOption = true;
+                std::cout << "Invalid option entered..." << std::endl;
+                std::cout << std::endl;
+                break;
         }
     }
 
-    std::cout << "Rock, Paper, Scissors...!" << std::endl;
-    std::cout << "{ player option } " << "(Player) vs. " << " {ai option}";
-    std::cout << " (AI)" << std::endl << std::endl;
+    srand(time(0));
 
-    std::cout << " {winner} " << " wins!" << std::endl;
+    int aiOption = rand() % 3;
+    std::string aiMove;
+
+    switch (aiOption)
+    {
+        case 0:
+            aiMove = "Rock";
+            break;
+        case 1:
+            aiMove = "Paper";
+            break;
+        case 2:
+            aiMove = "Scissor";
+            break;
+    }
+
+    std::cout << aiMove << std::endl << std::endl;
+
+    // std::cout << "Rock, Paper, Scissors...!" << std::endl;
+    // std::cout << "{ player option } " << "(Player) vs. " << " {ai option}";
+    // std::cout << " (AI)" << std::endl << std::endl;
+
+    // std::cout << " {winner} " << " wins!" << std::endl;
 }
 
 void print_introduction()
