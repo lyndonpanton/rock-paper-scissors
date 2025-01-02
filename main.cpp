@@ -1,15 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <fstream>
 
-int calculateWinner();
+/*
+    TODO
+
+    - Add formatting and dividers to make output clearer
+    - Call update_record function after a game is completed
+    - Complete clear_record function
+    - Complete print_record function
+    - Complete update_record function
+*/
+
+int calculateWinner(char, char);
 void clear_record();
 void exit_game(); // Done
-void play_game();
+void play_game(); // Done
 void print_introduction(); // Done
 void print_options(std::vector<std::string>&); // Done
 void print_record();
 void set_options(std::vector<std::string>&); // Done
+void update_record(int);
 
 enum Result
 {
@@ -103,8 +115,6 @@ void clear_record()
 
 void exit_game()
 {
-    // Save any data necessary...
-
     std::cout << std::endl << "Thank you for playing!";
 }
 
@@ -169,15 +179,12 @@ void play_game()
     switch (result)
     {
         case 0:
-            // Lost
             std::cout << "Computer wins!" << std::endl;
             break;
         case 1:
-            // Drew
             std::cout << "Draw!" << std::endl;
             break;
         case 2:
-            // Won
             std::cout << "Player wins!" << std::endl;
             break;
     }
@@ -187,6 +194,7 @@ void play_game()
     /*
         Update record file
     */
+   update_record(result);
 }
 
 void print_introduction()
@@ -211,17 +219,47 @@ void print_options(std::vector<std::string>& options)
 
 void print_record()
 {
-    std::cout << std::endl << "No record found..." << std::endl;
 
     /*
         Create a record file with the following format:
 
-            { Player wins } 
-            { AI wins }
+            { Player win count } 
+            { AI win count }
+            { Draw count }
     */
 
-   // Check if record file exists
+    // Check if record file exists
+    std::cout << std::endl;
 
+    std::ifstream record("record.txt");
+
+    if (record.good())
+    {
+        
+        int playerWinCount;
+        int aiWinCount;
+        int drawCount;
+
+        while (record >> playerWinCount)
+        {
+            record >> aiWinCount >> drawCount;
+
+            std::cout << "The Player has won " << playerWinCount << " time(s)!";
+            std::cout << std::endl;
+            
+            std::cout << "The AI has won " << aiWinCount << " time(s)!";
+            std::cout << std::endl;
+
+            std::cout << "There have been " << drawCount << " draws!";
+            std::cout << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "No record exists..." << std::endl;
+    }
+
+    std::cout << std::endl;
 }
 
 void set_options(std::vector<std::string>& options)
@@ -229,4 +267,21 @@ void set_options(std::vector<std::string>& options)
     options.push_back("Play (vs. AI)");
     options.push_back("Check record");
     options.push_back("Exit");
+}
+
+void update_record(int result)
+{
+    // File should have 
+    // Check if
+    std::ifstream record("record.txt");
+
+    if (record.good())
+    {
+        
+    }
+    else
+    {
+        // Create the file
+        // Re-read the file
+    }
 }
