@@ -2,13 +2,19 @@
 #include <vector>
 #include <ctime>
 
+int calculateWinner();
 void clear_record();
-void exit_game();
+void exit_game(); // Done
 void play_game();
 void print_introduction(); // Done
 void print_options(std::vector<std::string>&); // Done
 void print_record();
 void set_options(std::vector<std::string>&); // Done
+
+enum Result
+{
+    LOST, DREW, WON
+};
 
 int main(int argc, char* argv[])
 {
@@ -63,6 +69,30 @@ int main(int argc, char* argv[])
     return 0;
 }
 
+int calculateWinner(char player, char ai)
+{
+    if (player == ai)
+    {
+        return DREW;
+    } else if (player == 'R')
+    {
+        if (ai == 'P') return LOST;
+        if (ai == 'S') return WON;
+    } else if (player == 'P')
+    {
+        if (ai == 'R') return WON;
+        if (ai == 'S') return LOST;
+    }
+
+
+    if (ai == 'R')
+    {
+        return LOST;
+    } else {
+        return WON;
+    }
+}
+
 void clear_record()
 {
     // Check record file exists
@@ -78,18 +108,25 @@ void exit_game()
     std::cout << std::endl << "Thank you for playing!";
 }
 
+std::string get_move_as_text(char move)
+{
+    if (move == 'R') return "Rock";
+    else if (move == 'P') return "Paper";
+    else return "Scissors";
+}
+
 void play_game()
 {
     std::cout << "What are you using (R, P, or S)? ";
 
-    char playerOption;
+    char playerMove;
     bool validOption = false;
 
     while (!validOption)
     {
-        std::cin >> playerOption;
+        std::cin >> playerMove;
 
-        switch (playerOption)
+        switch (playerMove)
         {
             case 'R':
             case 'P':
@@ -103,29 +140,53 @@ void play_game()
 
     srand(time(0));
 
-    int aiOption = rand() % 3;
-    std::string aiMove;
+    int randomOption = rand() % 3;
+    char aiMove;
 
-    switch (aiOption)
+    switch (randomOption)
     {
         case 0:
-            aiMove = "Rock";
+            aiMove = 'R';
             break;
         case 1:
-            aiMove = "Paper";
+            aiMove = 'P';
             break;
         case 2:
-            aiMove = "Scissor";
+            aiMove = 'S';
             break;
     }
 
-    std::cout << aiMove << std::endl << std::endl;
+    std::cout << "Rock, Paper, Scissors...!" << std::endl;
 
-    // std::cout << "Rock, Paper, Scissors...!" << std::endl;
-    // std::cout << "{ player option } " << "(Player) vs. " << " {ai option}";
-    // std::cout << " (AI)" << std::endl << std::endl;
+    std::string playerText = get_move_as_text(playerMove);
+    std::string aiText = get_move_as_text(aiMove);
 
-    // std::cout << " {winner} " << " wins!" << std::endl;
+    std::cout << playerText << " (Player) vs. " << aiText << " (Computer)";
+    std::cout << "..." << std::endl << std::endl; 
+
+    int result = calculateWinner(playerMove, aiMove);
+
+    switch (result)
+    {
+        case 0:
+            // Lost
+            std::cout << "Computer wins!" << std::endl;
+            break;
+        case 1:
+            // Drew
+            std::cout << "Draw!" << std::endl;
+            break;
+        case 2:
+            // Won
+            std::cout << "Player wins!" << std::endl;
+            break;
+    }
+
+    std::cout << std::endl;
+
+    /*
+        Update record file
+    */
 }
 
 void print_introduction()
