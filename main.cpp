@@ -157,6 +157,8 @@ void play_game()
             case 'P':
             case 'S':
                 validOption = true;
+                break;
+            default:
                 std::cout << "Invalid option entered..." << std::endl;
                 std::cout << std::endl;
                 break;
@@ -279,19 +281,41 @@ void set_options(std::vector<std::string>& options)
 void update_record(int result)
 {
     std::ifstream record("record.txt");
+    
+    int player_win_count = 0;
+    int ai_win_count = 0;
+    int draw_count = 0;
 
     if (record.good())
     {
-        
+        record >> player_win_count >> ai_win_count >> draw_count;
+
+        switch (result)
+        {
+            case 0:
+                ai_win_count++;
+                break;
+            case 1:
+                draw_count++;
+                break;
+            case 2:
+                player_win_count++;
+                break;
+        }
+
+        std::ofstream current_record("record.txt");
+
+        current_record << player_win_count << std::endl;
+        current_record << ai_win_count << std::endl;
+        current_record << draw_count << std::endl;
+
+        std::cout << player_win_count << ", " << ai_win_count << ", ";
+        std::cout << draw_count << std::endl;
     }
     else
     {
-        // Create the file
+        // Write to the file
         std::ofstream new_record("record.txt");
-
-        int player_win_count = 0;
-        int ai_win_count = 0;
-        int draw_count = 0;
 
         switch (result)
         {
