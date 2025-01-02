@@ -7,7 +7,6 @@
     TODO
 
     - Add formatting and dividers to make output clearer
-    - Complete reset_record function
 */
 
 /*
@@ -18,15 +17,15 @@
     { Draw count}
 */
 
-int calculateWinner(char, char); // Done
+int calculateWinner(char, char);
 void reset_record();
-void exit_game(); // Done
-void play_game(); // Done
-void print_introduction(); // Done
-void print_options(std::vector<std::string>&); // Done
-void print_record(); // Done
-void set_options(std::vector<std::string>&); // Done
-void update_record(int); // Done
+void exit_game();
+void play_game();
+void print_introduction();
+void print_options(std::vector<std::string>&);
+void print_record();
+void set_options(std::vector<std::string>&);
+void update_record(int);
 
 enum Result
 {
@@ -256,7 +255,7 @@ void print_record()
 void reset_record()
 {
     std::cout << std::endl;
-       
+
     std::ofstream record("record.txt");
 
     if (record.good())
