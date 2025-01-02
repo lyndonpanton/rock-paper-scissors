@@ -7,9 +7,7 @@
     TODO
 
     - Add formatting and dividers to make output clearer
-    - Call update_record function after a game is completed
-    - Complete clear_record function
-    - Complete update_record function
+    - Complete reset_record function
 */
 
 /*
@@ -20,15 +18,15 @@
     { Draw count}
 */
 
-int calculateWinner(char, char);
-void clear_record();
+int calculateWinner(char, char); // Done
+void reset_record();
 void exit_game(); // Done
 void play_game(); // Done
 void print_introduction(); // Done
 void print_options(std::vector<std::string>&); // Done
-void print_record();
+void print_record(); // Done
 void set_options(std::vector<std::string>&); // Done
-void update_record(int);
+void update_record(int); // Done
 
 enum Result
 {
@@ -58,7 +56,7 @@ int main(int argc, char* argv[])
 
             std::cin >> option;
 
-            if (option > 0 && option < 4)
+            if (option > 0 && option < 5)
             {
                 break;
             }
@@ -77,6 +75,9 @@ int main(int argc, char* argv[])
                 print_record();
                 break;
             case 3:
+                reset_record();
+                break;
+            case 4:
                 playing = false;
                 exit_game();
                 break;
@@ -109,22 +110,6 @@ int calculateWinner(char player, char ai)
         return LOST;
     } else {
         return WON;
-    }
-}
-
-void clear_record()
-{
-    // Check record file exists
-    // Reset values to 0 if it does
-    std::ifstream record("record.txt");
-
-    if (record.good())
-    {
-        
-    }
-    else
-    {
-        std::cout << std::endl << "No record found..." << std::endl;
     }
 }
 
@@ -208,10 +193,7 @@ void play_game()
 
     std::cout << std::endl;
 
-    /*
-        Update record file
-    */
-   update_record(result);
+    update_record(result);
 }
 
 void print_introduction()
@@ -271,10 +253,36 @@ void print_record()
     std::cout << std::endl;
 }
 
+void reset_record()
+{
+    std::cout << std::endl;
+       
+    std::ofstream record("record.txt");
+
+    if (record.good())
+    {
+        record << 0 << std::endl;
+        record << 0 << std::endl;
+        record << 0 << std::endl;
+
+        std::cout << "Record has been reset" << std::endl;
+    }
+    else
+    {
+        // Write to the file
+        std::cout << "No record found..." << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    record.close();
+}
+
 void set_options(std::vector<std::string>& options)
 {
     options.push_back("Play (vs. AI)");
     options.push_back("Check record");
+    options.push_back("Clear record");
     options.push_back("Exit");
 }
 
@@ -309,8 +317,7 @@ void update_record(int result)
         current_record << ai_win_count << std::endl;
         current_record << draw_count << std::endl;
 
-        std::cout << player_win_count << ", " << ai_win_count << ", ";
-        std::cout << draw_count << std::endl;
+        std::cout << std::endl;
     }
     else
     {
