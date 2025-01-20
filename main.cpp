@@ -316,6 +316,8 @@ void update_record(int result)
         current_record << ai_win_count << std::endl;
         current_record << draw_count << std::endl;
 
+        current_record.close();
+
         std::cout << std::endl;
     }
     else
