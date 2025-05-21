@@ -184,7 +184,7 @@ let record = {
     "draw": 0
 };
 
-startGame(record);
+// startGame(record);
 
 module.exports = {
     determineGameResult   
