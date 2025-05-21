@@ -60,11 +60,37 @@ function getComputerMove() {
     return computerMove;
 }
 
-function determineGameResult() {
+function determineGameResult(userMove, computerMove) {
+    let result;
 
+    if (userMove === computerMove) {
+        result = 0;
+    } else {
+        if (userMove === "r") {
+            if (computerMove === "p") {
+                result = -1;
+            } else {
+                result = 1;
+            }
+        } else if (userMove === "p") {
+            if (computerMove === "r") {
+                result = 1;
+            } else {
+                result = -1
+            }
+        } else {
+            if (computerMove === "r") {
+                result = -1;
+            } else {
+                result = 1;
+            }
+        }
+    }
+    
+    return result;
 }
 
-function displayGameResult() {
+function displayGameResult(userMove, computerMove, gameResult) {
 
 }
 
@@ -76,11 +102,10 @@ function startGame() {
     let keepPlaying = true;
 
     while (keepPlaying) {
-        // let userMove = getUserMove();
+        let userMove = getUserMove();
         let computerMove = getComputerMove();
-        console.log(computerMove);
 
-        // let gameResult = determineGameResult(userMove, computerMove);
+        let gameResult = determineGameResult(userMove, computerMove);
 
         // displayGameResult(gameResult);
         // updateGameRecord(gameResult);
