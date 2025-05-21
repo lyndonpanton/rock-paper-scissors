@@ -151,7 +151,7 @@ function startGame(record) {
     let keepPlaying = true;
     // let gameCount = 0;
 
-    while (gameCount < 5) {
+    while (keepPlaying) {
         let userMove = getUserMove();
         let computerMove = getComputerMove();
 
