@@ -157,26 +157,26 @@ function displayGameRecord(record) {
     draw.textContent = record["draw"];
 }
 
-// function startGame(record) {
-//     let keepPlaying = true;
-//     // let gameCount = 0;
+function startGame(record) {
+    let keepPlaying = true;
+    // let gameCount = 0;
 
-//     while (keepPlaying) {
-//         let userMove = getUserMove();
-//         let computerMove = getComputerMove();
+    while (keepPlaying) {
+        let userMove = getUserMove();
+        let computerMove = getComputerMove();
 
-//         let gameResult = determineGameResult(userMove, computerMove);
+        let gameResult = determineGameResult(userMove, computerMove);
 
-//         displayGameResult(userMove, computerMove, gameResult);
-//         updateGameRecord(record, gameResult);
-//         displayGameRecord(record);
+        displayGameResult(userMove, computerMove, gameResult);
+        updateGameRecord(record, gameResult);
+        displayGameRecord(record);
 
-//         keepPlaying = confirm("Would you like to play again?");
-//         // gameCount += 1;
-//     }
+        keepPlaying = confirm("Would you like to play again?");
+        // gameCount += 1;
+    }
 
-//     alert("Thank you for playing.");
-// }
+    alert("Thank you for playing.");
+}
 
 let record = {
     "win": 0,
@@ -184,7 +184,7 @@ let record = {
     "draw": 0
 };
 
-// startGame(record);
+startGame(record);
 
 module.exports = {
     determineGameResult   
