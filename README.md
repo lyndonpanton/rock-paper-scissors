@@ -16,4 +16,6 @@ computer.
 
 ## Credits
 
+- [Lyndon Mykal Panton (developer)](https://github.com/lyndonpanton)
+
 ## References
