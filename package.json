@@ -1,0 +1,23 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "1.0.0",
+  "description": "An application which allows the user to play rock paper scissors against a computer",
+  "homepage": "https://github.com/lyndonpanton/rock-paper-scissors#readme",
+  "bugs": {
+    "url": "https://github.com/lyndonpanton/rock-paper-scissors/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyndonpanton/rock-paper-scissors.git"
+  },
+  "license": "ISC",
+  "author": "Lyndon Mykal Panton",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "jest": "^29.7.0"
+  }
+}
