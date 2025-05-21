@@ -149,8 +149,9 @@ function updateGameRecord(record, gameResult) {
 
 function startGame(record) {
     let keepPlaying = true;
+    // let gameCount = 0;
 
-    while (keepPlaying) {
+    while (gameCount < 5) {
         let userMove = getUserMove();
         let computerMove = getComputerMove();
 
@@ -159,7 +160,8 @@ function startGame(record) {
         displayGameResult(userMove, computerMove, gameResult);
         updateGameRecord(record, gameResult);
 
-        keepPlaying = true;
+        keepPlaying = confirm("Would you like to play again?");
+        // gameCount += 1;
     }
 
     alert("Thank you for playing.");
