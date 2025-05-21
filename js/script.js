@@ -128,11 +128,26 @@ function displayGameResult(userMove, computerMove, gameResult) {
     );
 }
 
-function updateGameRecord() {
+function updateGameRecord(record, gameResult) {
+    switch (gameResult) {
+        case -1:
+            record["lose"] += 1;
+            break;
+        case 0:
+            record["draw"] += 1;
+            break;
+        case 1:
+            record["win"] += 1;
+            break;
+    }
 
+    alert(
+        "Game record (win | lose | draw): "
+            + record["win"] + " | " + record["lose"] + " | " + record["draw"]
+    );
 }
 
-function startGame() {
+function startGame(record) {
     let keepPlaying = true;
 
     while (keepPlaying) {
@@ -142,12 +157,18 @@ function startGame() {
         let gameResult = determineGameResult(userMove, computerMove);
 
         displayGameResult(userMove, computerMove, gameResult);
-        // updateGameRecord(gameResult);
+        updateGameRecord(record, gameResult);
 
-        keepPlaying = false;
+        keepPlaying = true;
     }
 
     alert("Thank you for playing.");
 }
 
-startGame();
+let record = {
+    "win": 0,
+    "lose": 0,
+    "draw": 0
+};
+
+startGame(record);
