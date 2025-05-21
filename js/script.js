@@ -122,10 +122,11 @@ function displayGameResult(userMove, computerMove, gameResult) {
     let resultText = (gameResult == 1) ? "Player wins!" :
             ((gameResult == -1) ? "Computer wins!" : "Draw!");
 
-    alert(
-        userText + " (user) vs. " + computerText + " (computer) -> "
-            + resultText
-    );
+    let output = document.querySelector("#result");
+
+    output.textContent =
+            userText + " vs. " + computerText + " -> "
+            + resultText;
 }
 
 function updateGameRecord(record, gameResult) {

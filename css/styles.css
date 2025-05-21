@@ -14,15 +14,12 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
     height: 100vw;
 }
 
-h1 {
+h1, #rps, #result, #record {
     margin: 0;
-}
-
-#rps {
-    margin: 40px;
 }
 
 #record {
