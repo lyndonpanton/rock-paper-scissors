@@ -140,11 +140,6 @@ function updateGameRecord(record, gameResult) {
             record["win"] += 1;
             break;
     }
-
-    alert(
-        "Game record (win | lose | draw): "
-            + record["win"] + " | " + record["lose"] + " | " + record["draw"]
-    );
 }
 
 function displayGameRecord(record) {
@@ -157,25 +152,19 @@ function displayGameRecord(record) {
     draw.textContent = record["draw"];
 }
 
-function startGame(record) {
+function startGame(record, userMove) {
     let keepPlaying = true;
     // let gameCount = 0;
 
-    while (keepPlaying) {
-        let userMove = getUserMove();
-        let computerMove = getComputerMove();
+    let computerMove = getComputerMove();
 
-        let gameResult = determineGameResult(userMove, computerMove);
+    let gameResult = determineGameResult(userMove, computerMove);
 
-        displayGameResult(userMove, computerMove, gameResult);
-        updateGameRecord(record, gameResult);
-        displayGameRecord(record);
+    displayGameResult(userMove, computerMove, gameResult);
+    updateGameRecord(record, gameResult);
+    displayGameRecord(record);
 
-        keepPlaying = confirm("Would you like to play again?");
-        // gameCount += 1;
-    }
-
-    alert("Thank you for playing.");
+    // gameCount += 1;
 }
 
 let record = {
@@ -184,8 +173,27 @@ let record = {
     "draw": 0
 };
 
+let buttons = document.querySelectorAll(".rps-button");
+buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        let choice = button.getAttribute("id");
+
+        switch (choice) {
+            case "rock":
+                startGame(record, "r");
+                break;
+            case "paper":
+                startGame(record, "p");
+                break;
+            case "scissors":
+                startGame(record, "s");
+                break;
+        }
+    });
+});
+
 // startGame(record);
 
-module.exports = {
-    determineGameResult   
-};
+// module.exports = {
+//     determineGameResult   
+// };
