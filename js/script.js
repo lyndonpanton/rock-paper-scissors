@@ -91,7 +91,41 @@ function determineGameResult(userMove, computerMove) {
 }
 
 function displayGameResult(userMove, computerMove, gameResult) {
+    let userText;
 
+    switch (userMove) {
+        case "r":
+            userText = "Rock";
+            break;
+        case "p":
+            userText = "Paper";
+            break;
+        case "s":
+            userText = "Scissors";
+            break;
+    }
+
+    let computerText;
+
+    switch (computerMove) {
+        case "r":
+            computerText = "Rock";
+            break;
+        case "p":
+            computerText = "Paper";
+            break;
+        case "s":
+            computerText = "Scissors";
+            break;
+    }
+
+    let resultText = (gameResult == 1) ? "Player wins!" :
+            ((gameResult == -1) ? "Computer wins!" : "Draw!");
+
+    alert(
+        userText + " (user) vs. " + computerText + " (computer) -> "
+            + resultText
+    );
 }
 
 function updateGameRecord() {
@@ -107,7 +141,7 @@ function startGame() {
 
         let gameResult = determineGameResult(userMove, computerMove);
 
-        // displayGameResult(gameResult);
+        displayGameResult(userMove, computerMove, gameResult);
         // updateGameRecord(gameResult);
 
         keepPlaying = false;
