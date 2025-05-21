@@ -182,6 +182,10 @@ function endGame(isPlayerWinner) {
     } else {
         output.textContent = "Computer wins!"
     }
+
+    buttons.forEach((button) => {
+        button.removeEventListener("click", chooseOption);
+    });
 }
 
 function chooseOption(e) {
