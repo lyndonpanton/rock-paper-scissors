@@ -147,6 +147,16 @@ function updateGameRecord(record, gameResult) {
     );
 }
 
+function displayGameRecord(record) {
+    let win = document.getElementById("record-win");
+    let lose = document.getElementById("record-lose");
+    let draw = document.getElementById("record-draw");
+
+    win.textContent = record["win"];
+    lose.textContent = record["lose"];
+    draw.textContent = record["draw"];
+}
+
 function startGame(record) {
     let keepPlaying = true;
     // let gameCount = 0;
@@ -159,6 +169,7 @@ function startGame(record) {
 
         displayGameResult(userMove, computerMove, gameResult);
         updateGameRecord(record, gameResult);
+        displayGameRecord(record);
 
         keepPlaying = confirm("Would you like to play again?");
         // gameCount += 1;

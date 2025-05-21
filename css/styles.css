@@ -11,6 +11,7 @@ body, html {
 
 header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vw;
@@ -18,4 +19,8 @@ header {
 
 h1 {
     margin: 0;
+}
+
+#record {
+    font-size: 24px;
 }
