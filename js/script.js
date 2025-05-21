@@ -165,33 +165,51 @@ function startGame(record, userMove) {
     updateGameRecord(record, gameResult);
     displayGameRecord(record);
 
+    if (record["win"] >= 5) {
+        endGame(true);
+    } else if (record["lose"] >= 5) {
+        endGame(false);
+    }
+
     // gameCount += 1;
 }
+
+function endGame(isPlayerWinner) {
+    let output = document.querySelector("#result");
+
+    if (isPlayerWinner) {
+        output.textContent = "Player wins!"
+    } else {
+        output.textContent = "Computer wins!"
+    }
+}
+
+function chooseOption(e) {
+    let choice = e.target.getAttribute("id");
+
+    switch (choice) {
+        case "rock":
+            startGame(record, "r");
+            break;
+        case "paper":
+            startGame(record, "p");
+            break;
+        case "scissors":
+            startGame(record, "s");
+            break;
+    }
+}
+
+let buttons = document.querySelectorAll(".rps-button");
+buttons.forEach((button) => {
+    button.addEventListener("click", chooseOption);
+});
 
 let record = {
     "win": 0,
     "lose": 0,
     "draw": 0
 };
-
-let buttons = document.querySelectorAll(".rps-button");
-buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        let choice = button.getAttribute("id");
-
-        switch (choice) {
-            case "rock":
-                startGame(record, "r");
-                break;
-            case "paper":
-                startGame(record, "p");
-                break;
-            case "scissors":
-                startGame(record, "s");
-                break;
-        }
-    });
-});
 
 // startGame(record);
 
