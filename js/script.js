@@ -34,7 +34,30 @@ function getUserMove() {
 }
 
 function getComputerMove() {
-    
+    let computerMove = Math.floor(Math.random() * 3);
+
+    while (true) {
+        let isMoveValid = true;
+
+        switch (computerMove) {
+            case 0:
+                computerMove = "r";
+                break;
+            case 1:
+                computerMove = "p";
+                break;
+            case 2:
+                computerMove = "s";
+                break;
+            default:
+                isMoveValid = false;
+                break;
+        }
+
+        if (isMoveValid) break;
+    }
+
+    return computerMove;
 }
 
 function determineGameResult() {
@@ -50,16 +73,19 @@ function updateGameRecord() {
 }
 
 function startGame() {
-    let keepPlaying = false;
+    let keepPlaying = true;
 
     while (keepPlaying) {
-        let userMove = getUserMove();
-        // let computerMove = getComputerMove();
+        // let userMove = getUserMove();
+        let computerMove = getComputerMove();
+        console.log(computerMove);
 
         // let gameResult = determineGameResult(userMove, computerMove);
 
         // displayGameResult(gameResult);
         // updateGameRecord(gameResult);
+
+        keepPlaying = false;
     }
 
     alert("Thank you for playing.");
